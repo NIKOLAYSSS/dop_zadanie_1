@@ -20,9 +20,8 @@
 
 ```java
 public class Author {
-    private String name;  // Поле для хранения имени автора
+    private String name; 
 
-    // Конструктор для инициализации объекта Author с именем
     public Author(String name) {
         this.name = name;
     }
@@ -68,21 +67,19 @@ public class Author {
 ```java
 public class Book {
 
-    // Поле для хранения названия книги
+
     private String title;
 
-    // Поле для хранения имени автора книги
     private String author;
 
-    // Поле для хранения жанра книги
     private String genre;
 
     // Конструктор для инициализации объекта книги
     // Принимает название, автора и жанр книги
     public Book(String title, String author, String genre) {
-        this.title = title;    // Инициализация названия книги
-        this.author = author;  // Инициализация автора книги
-        this.genre = genre;    // Инициализация жанра книги
+        this.title = title;   
+        this.author = author;  
+        this.genre = genre;    
     }
 
     // Геттер для получения названия книги
@@ -100,7 +97,7 @@ public class Book {
         return genre;
     }
 
-    // Переопределённый метод toString для красивого вывода информации о книге
+
     // Возвращает строковое представление объекта Book в виде:
     // "Book{title='название', author='автор', genre='жанр'}"
     @Override
@@ -137,9 +134,9 @@ public class Library {
      * Конструктор для инициализации коллекций.
      */
     public Library() {
-        books = new ArrayList<>(); // Инициализация списка книг
-        authors = new HashSet<>(); // Инициализация множества авторов
-        booksByGenre = new HashMap<>(); // Инициализация мапы для жанров
+        books = new ArrayList<>(); 
+        authors = new HashSet<>(); 
+        booksByGenre = new HashMap<>(); 
     }
 
     /**
@@ -150,7 +147,7 @@ public class Library {
      * @param book книга, которую нужно добавить
      */
     public void addBook(Book book) {
-        books.add(book); // Добавляем книгу в список всех книг
+        books.add(book); // Добавляем книгу в список
 
         // Добавляем автора в множество (если его там нет)
         authors.add(new Author(book.getAuthor()));
@@ -209,7 +206,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Инфлейтинг макета для каждого элемента списка (item_book.xml)
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_book, parent, false);
 
@@ -220,7 +216,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     // Метод для связывания данных (книги) с элементами интерфейса
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        // Получаем книгу из списка по текущей позиции
         Book book = bookList.get(position);
 
         // Устанавливаем текст для каждого элемента интерфейса (название, автор, жанр)
@@ -232,7 +227,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     // Метод для получения количества элементов в списке
     @Override
     public int getItemCount() {
-        return bookList.size(); // Возвращаем размер списка книг
+        return bookList.size(); 
     }
 
     // Внутренний класс для хранения элементов интерфейса, представляющих отдельную книгу
@@ -243,7 +238,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         // Конструктор ViewHolder, инициализирующий элементы интерфейса
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Привязываем элементы из макета (item_book.xml) к переменным
+       
             title = itemView.findViewById(R.id.textTitle);
             author = itemView.findViewById(R.id.textAuthor);
             genre = itemView.findViewById(R.id.textGenre);
@@ -267,7 +262,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Устанавливаем layout для этой активности
         setContentView(R.layout.activity_main);
 
         // Инициализация объекта библиотеки
@@ -288,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
         bookAdapter = new BookAdapter(library.getBooks());
         recyclerViewBooks.setAdapter(bookAdapter);
 
-        // Получаем ссылку на кнопку "Добавить" и настраиваем обработчик клика
+        // обработчик клика
         Button buttonAdd = findViewById(R.id.buttonAdd);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -323,7 +317,6 @@ public class MainActivity extends AppCompatActivity {
                     .append("\n");
         }
 
-        // Пока результат не выводится на экран, но его можно использовать или логировать
     }
 }
 
